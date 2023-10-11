@@ -1,0 +1,471 @@
+{
+	"info": {
+		"_postman_id": "9ba7c3c7-1593-402f-beef-c3c680072dde",
+		"name": "eastridge-test-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "invoices",
+			"item": [
+				{
+					"name": "list invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices?format=json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json",
+									"description": "xml | json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create invoice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\":\"2022-03-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoices/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get invoice with id.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/?format=json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								""
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json",
+									"description": "xml | json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update invoice",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\":\"2022-03-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoices/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete invoice",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list invoice item of given invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/items/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								"items",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add invoice item to invoice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"units\":5,\n    \"description\":\"test\",\n    \"amount\": 100.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/items/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								"items",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get invoice item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/items/2/?format=json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								"items",
+								"2",
+								""
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json",
+									"description": "xml | json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update invoice item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"units\":32,\n    \"amount\":1230,\n    \"description\": \"Updated Description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/items/3/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								"items",
+								"3",
+								""
+							]
+						},
+						"description": "/api/invoices/{invoice_id}/items/{item_id}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete invoice item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoices/2/items/3/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"2",
+								"items",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invoice items",
+			"item": [
+				{
+					"name": "create invoice item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice\":2,\n    \"units\":10,\n    \"amount\":123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list All invoice items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/?format=json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								""
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json",
+									"description": "xml|json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  invoice items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/1/?format=json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								"1",
+								""
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json",
+									"description": "xml | json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update invoice item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"units\":120,\n    \"amount\":120,\n    \"id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch invoice item",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"units\":120,\n    \"amount\":120\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete invoice item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/invoice-items/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"invoice-items",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "Invoice Id",
+			"value": "2"
+		}
+	]
+}

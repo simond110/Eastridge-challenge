@@ -1,0 +1,718 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/invoices/:
+    get:
+      operationId: listInvoices
+      description: List the Invoices with pangiation
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: format
+        required: false
+        in: query
+        description: Specify the Response Media Type.
+        schema:
+          type: string
+          enum:
+           - "json"
+           -
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Invoice'
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Invoice'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createInvoice
+      description: Create the Invoice
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+      tags:
+      - api
+  /api/invoices/{id}/:
+    get:
+      operationId: retrieveInvoice
+      description: Retrieve the Invoice data of given invoice_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateInvoice
+      description: Update or Replace the Existing Invoice data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateInvoice
+      description: Patch the Existing Invoice data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyInvoice
+      description: Delete the Invoice
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/invoice-items/:
+    get:
+      operationId: listInvoiceItems
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InvoiceItemRead'
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InvoiceItemRead'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createInvoiceItem
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+          description: ''
+      tags:
+      - api
+  /api/invoice-items/{id}/:
+    get:
+      operationId: retrieveInvoiceItem
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice item.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateInvoiceItem
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateInvoiceItem
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyInvoiceItem
+      description: 'This viewset can do CRUD for InvoiceItems directly.
+
+        It means that it can handle the any InvoiceItems of any Invoice.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this invoice item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/invoices/{invoice_pk}/items/:
+    get:
+      operationId: listInvoiceItemReads
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InvoiceItemRead'
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InvoiceItemRead'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createInvoiceItemRead
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+          description: ''
+      tags:
+      - api
+  /api/invoices/{invoice_pk}/items/{id}/:
+    get:
+      operationId: retrieveInvoiceItemRead
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateInvoiceItemRead
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemRead'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemRead'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemRead'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemRead'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemRead'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateInvoiceItemRead
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceItemWrite'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InvoiceItemWrite'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyInvoiceItemRead
+      description: This Viewset can do CRUD for InvoiceItems of certain Invocie.
+      parameters:
+      - name: invoice_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date
+      required:
+      - date
+    InvoiceItemWrite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        units:
+          type: integer
+        description:
+          type: string
+          nullable: true
+        amount:
+          type: number
+        invoice:
+          type: integer
+      required:
+      - units
+      - amount
+      - invoice
+    InvoiceItemRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        units:
+          type: integer
+        description:
+          type: string
+          nullable: true
+        amount:
+          type: number
+        invoice:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            date:
+              type: string
+              format: date
+          required:
+          - date
+          readOnly: true
+      required:
+      - units
+      - amount
